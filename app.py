@@ -61,6 +61,16 @@ def get_movies():
 
     return jsonify(result)
 
+@app.route("/api/v1/movie/<id>", methods=["DELETE"])
+def delete_movie(id):
+    movie = Movie.query.get(id)
+    db.session.delete(movie)
+    db.session.commit()
+    # TODO: add cloudinary delete funcionality after implementing front end to get public_id
+
+    return jsonify("Movie GONE!")
+
+
 
 if __name__ == "__main__":
     app.debug = True
