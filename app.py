@@ -54,7 +54,12 @@ def add_movie():
     movie = Movie.query.get(new_movie.id)
     return movie_schema.jsonify(movie)
 
+@app.route("/api/v1/movies", methods=["GET"])
+def get_movies():
+    all_movies = Movie.query.all()
+    result = movies_schema.dump(all_movies)
 
+    return jsonify(result)
 
 
 if __name__ == "__main__":
