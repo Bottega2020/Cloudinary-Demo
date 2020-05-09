@@ -66,7 +66,7 @@ def delete_movie(id):
     movie = Movie.query.get(id)
     db.session.delete(movie)
     db.session.commit()
-    # TODO: add cloudinary delete funcionality after implementing front end to get public_id
+    Cloud.api.delete_resources([movie.public_id])
 
     return jsonify("Movie GONE!")
 
